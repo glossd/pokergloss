@@ -5,38 +5,39 @@ import (
 )
 
 type ItemID string
+
 const (
 	PacifierID ItemID = "pacifier"
 
-	SwordID ItemID = "sword"
-	SunglassesID ItemID = "sunglasses"
-	GrayFishID ItemID = "grayFish"
-	MartiniID ItemID = "martini"
-	SunriseCocktailID ItemID = "sunriseCocktail"
+	SwordID              ItemID = "sword"
+	SunglassesID         ItemID = "sunglasses"
+	GrayFishID           ItemID = "grayFish"
+	MartiniID            ItemID = "martini"
+	SunriseCocktailID    ItemID = "sunriseCocktail"
 	CosmapolitanGlitchID ItemID = "cosmapolitanGlitch"
-	LightBulbID ItemID = "lightBulb"
-	IceCreamID ItemID = "iceCream"
-	StrawberryID ItemID = "strawberry"
-	SkullID ItemID = "skull"
-	ShipID ItemID = "ship"
-	FireExtinguisherID ItemID = "fireExtinguisher"
-	InvisibleID ItemID = "invisible"
+	LightBulbID          ItemID = "lightBulb"
+	IceCreamID           ItemID = "iceCream"
+	StrawberryID         ItemID = "strawberry"
+	SkullID              ItemID = "skull"
+	ShipID               ItemID = "ship"
+	FireExtinguisherID   ItemID = "fireExtinguisher"
+	InvisibleID          ItemID = "invisible"
 
 	// For coins
 	GlassOfWineID ItemID = "glassOfWine"
-	CloverID ItemID        = "clover"
-	HourglassID ItemID     = "hourglass"
-	PiggyBankID ItemID = "piggyBank"
-	ButterflyID ItemID = "butterfly"
-	MonsterID ItemID = "monster"
-	GhostID ItemID = "ghost"
-	BeeID ItemID = "bee"
-	BurgerID ItemID = "burger"
+	CloverID      ItemID = "clover"
+	HourglassID   ItemID = "hourglass"
+	PiggyBankID   ItemID = "piggyBank"
+	ButterflyID   ItemID = "butterfly"
+	MonsterID     ItemID = "monster"
+	GhostID       ItemID = "ghost"
+	BeeID         ItemID = "bee"
+	BurgerID      ItemID = "burger"
 
 	CrownID ItemID = "crown"
 	// Survival
-	TorturerID ItemID = "torturer"
-	HellAmuletID ItemID = "hellAmulet"
+	TorturerID      ItemID = "torturer"
+	HellAmuletID    ItemID = "hellAmulet"
 	SmirkingDemonID ItemID = "smirkingDemon"
 )
 
@@ -75,16 +76,16 @@ var Rip = NewSideItemForChips("rip", "R.I.P", 1300)
 var VintageCar = NewSideItemForChips("vintageCar", "Vintage Car", 1500)
 var Tutanchamun = NewSideItemForChips("tutanchamun", "Tutanchamun", 3000)
 
-var Burger = NewSideItemForChips(BurgerID, "Burger", 5000)
-var Bee = NewSideItemForChips(BeeID, "Bee", 5000)
-var PiggyBank = NewSideItemForChips(PiggyBankID, "Piggy Bank", 5000)
-var Clover =  NewSideItemForChips(CloverID, "Clover", 5000)
-var GlassOfWine = NewSideItemForChips(GlassOfWineID, "Glass of Wine", 5000)
-var Monster = NewSideItemForChips(MonsterID, "Monster", 10000)
-var Ghost = NewSideItemForChips(GhostID, "Ghost", 10000)
-var Butterfly = NewSideItemForChips(ButterflyID, "Butterfly", 10000)
-var GoldenGlasses = NewSideItemForChips("goldenGlasses", "Golden Glasses", 10000)
-var Hourglass = NewSideItemForChips(HourglassID, "Hourglass", 150000)
+var Burger = NewSideItemForCoins(BurgerID, "Burger", 1)
+var Bee = NewSideItemForCoins(BeeID, "Bee", 1)
+var PiggyBank = NewSideItemForCoins(PiggyBankID, "Piggy Bank", 1)
+var Clover = NewSideItemForCoins(CloverID, "Clover", 1)
+var GlassOfWine = NewSideItemForCoins(GlassOfWineID, "Glass of Wine", 1)
+var Monster = NewSideItemForCoins(MonsterID, "Monster", 2)
+var Ghost = NewSideItemForCoins(GhostID, "Ghost", 2)
+var Butterfly = NewSideItemForCoins(ButterflyID, "Butterfly", 2)
+var GoldenGlasses = NewSideItemForCoins("goldenGlasses", "Golden Glasses", 2)
+var Hourglass = NewSideItemForCoins(HourglassID, "Hourglass", 3)
 
 var Crown = NewItemNotForSale(CrownID, "Crown", Top)
 
@@ -101,11 +102,12 @@ var ItemsOnSale = append(
 	[]*Item{Pacifier, LightBulb, Slippers, IceCream, GrayFish, Ship, Sunglasses, FireExtinguisher, Gamepad, CupCoffee, Strawberry, CubicToyCat, ScubaGlasses, Sword, Voodoo, Mummy,
 		Martini, Compass, SunriseCocktail, CosmapolitanGlitch, ToyRobot, DiverHelmet,
 		Dinosaur, BacklitPumpkin, Skull, Vendetta, Rocket, Shuriken, Grenade, Rip, VintageCar, Tutanchamun},
-	AnimatedItems...
-	)
+	AnimatedItems...,
+)
 
 var AnimatedItemsMap = buildMapForAnimatedItems()
-func buildMapForAnimatedItems() map[ItemID]*Item  {
+
+func buildMapForAnimatedItems() map[ItemID]*Item {
 	var result = make(map[ItemID]*Item)
 	for _, item := range AnimatedItems {
 		result[item.ID] = item
@@ -122,6 +124,7 @@ func ItemCoinsDayPrice(itemID ItemID) int64 {
 }
 
 var ItemsOnSaleMap = buildMapOnSaleItems()
+
 func buildMapOnSaleItems() map[ItemID]*Item {
 	var result = make(map[ItemID]*Item)
 	for _, item := range ItemsOnSale {
@@ -132,6 +135,7 @@ func buildMapOnSaleItems() map[ItemID]*Item {
 
 var ItemsNotForSale = []*Item{Invisible, Torturer, HellAmulet, SmirkingDemon, Crown}
 var ItemsNotForSaleMap = buildMapNotForSaleItems()
+
 func buildMapNotForSaleItems() map[ItemID]*Item {
 	var result = make(map[ItemID]*Item)
 	for _, item := range ItemsNotForSale {
@@ -139,7 +143,9 @@ func buildMapNotForSaleItems() map[ItemID]*Item {
 	}
 	return result
 }
+
 var ItemsNotForSaleOrder = buildMapNotForSaleOrder()
+
 func buildMapNotForSaleOrder() map[ItemID]int {
 	var result = make(map[ItemID]int)
 	for i, item := range ItemsNotForSale {
@@ -149,7 +155,7 @@ func buildMapNotForSaleOrder() map[ItemID]int {
 }
 
 type Item struct {
-	ID        ItemID
+	ID ItemID
 	SaleType
 	PositionType
 	Name      string
@@ -160,8 +166,12 @@ func NewSideItemForChips(id ItemID, name string, dayPrice int64) *Item {
 	return NewItemForChips(id, name, dayPrice, Side)
 }
 
-func NewItemForChips(id ItemID, name string, dayPrice int64, pt PositionType,) *Item {
+func NewItemForChips(id ItemID, name string, dayPrice int64, pt PositionType) *Item {
 	return &Item{ID: id, Name: name, PositionType: pt, PriceList: buildPriceList(dayPrice), SaleType: ForChips}
+}
+
+func NewSideItemForCoins(id ItemID, name string, dayPrice int64) *Item {
+	return NewItemForCoins(id, name, dayPrice, Side)
 }
 
 func NewItemForCoins(id ItemID, name string, dayPrice int64, pt PositionType) *Item {
@@ -186,8 +196,8 @@ func (i *Item) GetPrice(tf TimeFrame) (int64, error) {
 }
 
 type PriceList struct {
-	Day int64
-	Week int64
+	Day   int64
+	Week  int64
 	Month int64
 }
 
@@ -196,6 +206,7 @@ func buildPriceList(dayPrice int64) PriceList {
 }
 
 type SaleType string
+
 const (
 	ForCoins   SaleType = "coins"
 	ForChips   SaleType = "chips"
@@ -203,9 +214,10 @@ const (
 )
 
 type PositionType string
+
 const (
-	Side     PositionType = "side"
-	Top PositionType = "top"
+	Side PositionType = "side"
+	Top  PositionType = "top"
 )
 
 func errNoSuchItem(ID ItemID) error {
