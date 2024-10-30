@@ -5,7 +5,10 @@ stdout:
 domain: pokergloss.com
 
 gcp:
+  project_id: pokerblow
   credentials:
+  metrics:
+    push_duration: 60s
 
 db:
   scheme: mongodb
@@ -99,10 +102,3 @@ profile_service:
 
 survival:
   max_anonymous_counter: 50
-
-gke:
-  pod_id:
-  pod_name:
-  namespace_name:
-  metrics:
-    push_duration: 60s

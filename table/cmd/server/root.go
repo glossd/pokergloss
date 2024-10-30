@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	conf "github.com/glossd/pokergloss/goconf"
 	"github.com/glossd/pokergloss/table/db"
+	"github.com/glossd/pokergloss/table/web/client/mqpub"
 	"github.com/glossd/pokergloss/table/web/client/mqsub"
 	"github.com/glossd/pokergloss/table/web/router"
 	"math/rand"
@@ -20,6 +21,8 @@ func Execute(c *gin.Engine) {
 		//if err != nil {
 		//	log.Fatalf("Failed connection to StackDriver server: %s", err)
 		//}
+
+		mqpub.InitTimeoutPublisher()
 
 		go mqsub.SubscribeForTimeouts()
 	}
