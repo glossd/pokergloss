@@ -13,7 +13,8 @@ I decided to merge all microservices into a monolith and deploy it as a single G
 ### From Microservices to Monolith changes
 1. Thanks to `api/{service_name}/**` pattern it was easy to combine all the routes in one HTTP server.  
 2. gRPC was replaced with simple function calls. I'm glad I decided to create gRPC only for internal calls, instead of having the easy gRPC-HTTP transcoding way. 
-3. Pub/Sub was replaced with simple Go channels, ([I used this to mock it](https://github.com/glossd/memmq/blob/master/memmq.go)). I'm glad GCP didn't offer Kafka as a Service because it would be harder to get rid of.   
+3. Pub/Sub was replaced with simple Go channels, ([I used this to mock it](https://github.com/glossd/memmq/blob/master/memmq.go)). 
+     I'm glad GCP didn't offer Kafka as a Service because it would be harder to get rid of. However, table timeouts needed to be persistent and I kept Pub/Sub just for them.   
 4. Each service would still have its own database, because it creates no additional costs.
 5. The microservices used to run on Golang 1.15. Some of the old packages were no longer available e.g. `google.golang.org/grpc`
 So I had to reinstall packages, updating Go to 1.23.

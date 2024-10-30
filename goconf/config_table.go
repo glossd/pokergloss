@@ -5,7 +5,6 @@ import "time"
 type TableService struct {
 	Table
 	Scheduler
-	GKE
 	Multi
 	Cleaning
 	Enrich

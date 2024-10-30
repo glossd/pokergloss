@@ -19,7 +19,6 @@ type AppProps struct {
 	DB
 	Stdout
 	GCP
-	GKE
 	TableService `mapstructure:"table_service"`
 	Bank
 	Ws
@@ -43,21 +42,7 @@ type Stdout struct {
 
 type GCP struct {
 	Credentials string
-}
-
-// Not used in the monolith, delete
-type GKE struct {
-	//from gke metadata
-	ProjectID     string `mapstructure:"project_id"`
-	Zone          string
-	Location      string
-	ClusterName   string
-	IsMetaSuccess bool
-	// from env
-	PodId         string `mapstructure:"pod_id"`
-	PodName       string `mapstructure:"pod_name"`
-	NamespaceName string `mapstructure:"namespace_name"`
-
+	ProjectID   string `mapstructure:"project_id"`
 	Metrics
 }
 

@@ -18,7 +18,7 @@ func Init() {
 		ctx := context.Background()
 
 		app, err := firebase.NewApp(ctx, &firebase.Config{
-			ProjectID: "pokerblow",
+			ProjectID: goconf.Props.GCP.ProjectID,
 		}, GoogleClientOptions()...)
 		if err != nil {
 			log.Fatalf("error initializing firebase: %v\n", err)

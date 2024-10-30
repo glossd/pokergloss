@@ -27,7 +27,7 @@ func Init() error {
 }
 
 func periodicallyWriteMetrics() {
-	ticker := time.NewTicker(conf.Props.GKE.Metrics.PushDuration)
+	ticker := time.NewTicker(conf.Props.GCP.Metrics.PushDuration)
 	go func() {
 		for range ticker.C {
 			err := writeMetric("broadcast/connection-count", 0)
@@ -43,7 +43,7 @@ func writeMetric(name string, value int64) error {
 		Seconds: time.Now().Unix(),
 	}
 	req := &monitoringpb.CreateTimeSeriesRequest{
-		Name: "projects/" + conf.Props.GKE.ProjectID,
+		Name: "projects/" + conf.Props.GCP.ProjectID,
 		TimeSeries: []*monitoringpb.TimeSeries{{
 			Metric: &metricpb.Metric{
 				Type: buildMetricType(name),
@@ -51,11 +51,7 @@ func writeMetric(name string, value int64) error {
 			Resource: &monitoredres.MonitoredResource{
 				Type: "k8s_pod",
 				Labels: map[string]string{
-					"project_id":     conf.Props.GKE.ProjectID,
-					"location":       conf.Props.GKE.Location,
-					"cluster_name":   conf.Props.GKE.ClusterName,
-					"namespace_name": conf.Props.GKE.NamespaceName,
-					"pod_name":       conf.Props.GKE.PodName,
+					"project_id": conf.Props.GCP.ProjectID,
 				},
 			},
 			Points: []*monitoringpb.Point{{
