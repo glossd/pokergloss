@@ -22,6 +22,7 @@ func InitTimeoutPublisher() {
 }
 
 func PublishTimeoutEvent(event *timeout.Event) {
+	mq.SetCacheGameFlow(event.Key.TableID, event.Key.Version)
 	if conf.IsE2E() {
 		if mq.IsTimeoutTestMQEnabled {
 			mq.TimeoutTestMQ <- event
