@@ -74,6 +74,10 @@ func HandleTimeoutEvent(ctx context.Context, event timeout.Event) (nack bool) {
 		case timeout.SeatReservation:
 			return actionhandler.DoSeatReservationTimeout(ctx, event.Key)
 		case timeout.Decision:
+			gfv := mq.GetCacheGameFlow(event.Key.TableID)
+			if gfv > event.Key.Version {
+				return false
+			}
 			return actionhandler.DoDecisionTimeout(ctx, event.Key)
 		case timeout.StartGame:
 			return actionhandler.DoStartGame(ctx, event.Key)

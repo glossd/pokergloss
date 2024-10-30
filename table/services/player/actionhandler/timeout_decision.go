@@ -51,7 +51,7 @@ func DoDecisionTimeout(ctx context.Context, key timeout.Key) (tryAgain bool) {
 	if err != nil {
 		if err == db.ErrVersionNotMatch {
 			log.Tracef("Decision timeout race condition, key=%s: %s", key, err)
-			return
+			return false
 		}
 		log.Errorf("Couldn't send timeToDecide timeout, find failed, key=%s : %s", key, err)
 		return true
@@ -59,13 +59,13 @@ func DoDecisionTimeout(ctx context.Context, key timeout.Key) (tryAgain bool) {
 	player, err := table.GetPlayer(key.Position)
 	if err != nil {
 		log.Errorf("Couldn't send timeToDecide timeout, getting stalePlayer by position, key=%s : %s", key, err)
-		return
+		return false
 	}
 
 	err = table.MakeActionOnTimeout(key.Position)
 	if err != nil {
 		log.Errorf("Couldn't send timeToDecide timeout, making action on timeout, tableID=%s, player=%v : %s", table.ID, player, err)
-		return
+		return false
 	}
 
 	err = Handle(ctx, table)

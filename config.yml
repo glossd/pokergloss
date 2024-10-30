@@ -22,9 +22,9 @@ table_service:
     seat_reservation_timeout: 20s # this way you can set this with PG_SEAT_RESERVATION_TIMEOUT variable
     min_decision_timeout: 3s
     max_decision_timeout: 60s
-    game_end_min_timeout: 1750ms
+    game_end_min_timeout: 2500ms
     game_end_pot_timeout: 1250ms
-    game_end_community_card_timeout: 1500ms
+    game_end_community_card_timeout: 1250ms
     show_down_timeout: 5s
     player_action_duration: 300ms
     rake_percent: 0.0

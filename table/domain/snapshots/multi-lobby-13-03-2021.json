@@ -1,0 +1,215 @@
+{
+  "createdat" : 1609632000001,
+  "name" : "Субботний 18:00 МСК",
+  "startat" : 1615647600000,
+  "tablesize" : 6,
+  "levelincreasetime" : 300000000000,
+  "decisiontimeout" : 15000000000,
+  "bettinglimit" : "ML",
+  "bigblind": 2,
+  "buyin": 250,
+  "users" : [
+    {
+      "userid" : "zVq1lmrwbAhFr8ZGDJjNRdti2Il1",
+      "username" : "Alekseipro",
+      "picture" : ""
+    },
+    {
+      "userid" : "1YA2fZ4QZfVHxeWqf0Zx3G1WDV03",
+      "username" : "Alex7",
+      "picture" : ""
+    },
+    {
+      "userid" : "O8NhDJCppzbHw8BZelFPROFwY463",
+      "username" : "Theflexor",
+      "picture" : "https://storage.googleapis.com/pokerblow-avatars/O8NhDJCppzbHw8BZelFPROFwY463-nqJg"
+    },
+    {
+      "userid" : "vAOX68NNK3Qv7ZoMIG6gJmmqygw1",
+      "username" : "oleg33333",
+      "picture" : ""
+    },
+    {
+      "userid" : "Gh4y06HL31YLG5ywnEo14LP2wPG3",
+      "username" : "Fedotoff",
+      "picture" : ""
+    },
+    {
+      "userid" : "OMSs4y69gUOywhXaXuAgdYY5s3P2",
+      "username" : "Vladsok",
+      "picture" : ""
+    },
+    {
+      "userid" : "QO517R3ElySnjezKGLWxIulpzWv2",
+      "username" : "BARDAK",
+      "picture" : ""
+    },
+    {
+      "userid" : "B1a26Rivmage7DOATmgDqKvhzMY2",
+      "username" : "Volf",
+      "picture" : ""
+    },
+    {
+      "userid" : "AVD7AkuHstalWk6dAkRrx8dq2963",
+      "username" : "EdvarD",
+      "picture" : ""
+    },
+    {
+      "userid" : "TvG8miEZ6bXn2azYJaHmZAwAjbI3",
+      "username" : "DimasThomson",
+      "picture" : ""
+    },
+    {
+      "userid" : "DufZDPystLS6Zvz13GkEqYhUIvs2",
+      "username" : "Nochips",
+      "picture" : ""
+    },
+    {
+      "userid" : "0JdOypTwhtWt7Nu5hn1nzbwJzZi2",
+      "username" : "Smile",
+      "picture" : "https://storage.googleapis.com/pokerblow-avatars/0JdOypTwhtWt7Nu5hn1nzbwJzZi2-tAy1"
+    },
+    {
+      "userid" : "xOVsB23i7DTqSDRTARwgTMviMGQ2",
+      "username" : "reyzor06",
+      "picture" : ""
+    },
+    {
+      "userid" : "IVoEuf6ScJhibSdvCARFdhcdzrk1",
+      "username" : "IVAN",
+      "picture" : "https://storage.googleapis.com/pokerblow-avatars/IVoEuf6ScJhibSdvCARFdhcdzrk1-mPKa"
+    },
+    {
+      "userid" : "BZw7wMi9uHcnm6d8T0D0tadDQn23",
+      "username" : "Aleksey",
+      "picture" : ""
+    },
+    {
+      "userid" : "HyKlq8B8V6YIm1xb8TKvbT2Ns4q2",
+      "username" : "Radik2028",
+      "picture" : "https://storage.googleapis.com/pokerblow-avatars/HyKlq8B8V6YIm1xb8TKvbT2Ns4q2-Xpxt"
+    },
+    {
+      "userid" : "5a0nk7Y0yyVdMpFtBgYsCx0zLxl2",
+      "username" : "Yura",
+      "picture" : ""
+    },
+    {
+      "userid" : "10aM3cGqdSQnlTF5YTEaB4JchLm1",
+      "username" : "Axell",
+      "picture" : ""
+    },
+    {
+      "userid" : "NCfh9I8IyZgjiBcEaTKypWcDqqY2",
+      "username" : "Rist",
+      "picture" : ""
+    },
+    {
+      "userid" : "IkLIzLbeFfO17udN1dFhh1cREW02",
+      "username" : "vslv",
+      "picture" : "https://storage.googleapis.com/pokerblow-avatars/IkLIzLbeFfO17udN1dFhh1cREW02-nO1G"
+    },
+    {
+      "userid" : "KzIVQJEmldggAjNlfsy8aSjUCou2",
+      "username" : "Ramstien",
+      "picture" : ""
+    },
+    {
+      "userid" : "qPDLgyEICTamIREQBZf13PP2nzk2",
+      "username" : "AleXANoff",
+      "picture" : ""
+    },
+    {
+      "userid" : "GARVdT7Oa9crQ81P8oBZbLoZ5oX2",
+      "username" : "deboost222",
+      "picture" : ""
+    },
+    {
+      "userid" : "4GIg07MYYtV4KBPSbsSYYM33itU2",
+      "username" : "craizer",
+      "picture" : ""
+    },
+    {
+      "userid" : "ra3NIXKBNHerkvvndq0tBfREo0W2",
+      "username" : "Efrem2703",
+      "picture" : ""
+    },
+    {
+      "userid" : "Jd0HjLbg77eXC7zP3GxhMZhXpG23",
+      "username" : "Fatkullai",
+      "picture" : ""
+    },
+    {
+      "userid" : "aHx0NlWpisMIU3rTmWKxydcIkGf1",
+      "username" : "gerasimenko",
+      "picture" : ""
+    },
+    {
+      "userid" : "qVTC7W1EYVZXhFQsZJuIyc7kggG2",
+      "username" : "Bratislav",
+      "picture" : ""
+    },
+    {
+      "userid" : "FLortfvYo2asZdkPBgHzuEndje12",
+      "username" : "yulya",
+      "picture" : ""
+    },
+    {
+      "userid" : "yrBLXMzRdtdpxxwXHzGJJ51eHmh2",
+      "username" : "popajopa",
+      "picture" : ""
+    },
+    {
+      "userid" : "o7Bge5ToTnZdAlWHR1iCHHIi9qM2",
+      "username" : "OBVERZ",
+      "picture" : ""
+    }
+  ],
+  "status" : "registering",
+  "tableids" : null,
+  "prizes" : [
+    {
+      "place" : 1,
+      "prize" : 4820
+    },
+    {
+      "place" : 2,
+      "prize" : 4476
+    },
+    {
+      "place" : 3,
+      "prize" : 4132
+    },
+    {
+      "place" : 4,
+      "prize" : 3788
+    },
+    {
+      "place" : 5,
+      "prize" : 3444
+    },
+    {
+      "place" : 6,
+      "prize" : 2756
+    },
+    {
+      "place" : 7,
+      "prize" : 2412
+    },
+    {
+      "place" : 8,
+      "prize" : 2068
+    },
+    {
+      "place" : 9,
+      "prize" : 1724
+    },
+    {
+      "place" : 10,
+      "prize" : 1380
+    }
+  ],
+  "realprizedescription" : "3 реальных победителя",
+  "lastvideoid" : "Ys1mmq80Wl8",
+  "version" : 50
+}
