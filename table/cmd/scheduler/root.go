@@ -59,6 +59,13 @@ func Execute() {
 		log.Fatalf("scheduler: Failed to add create daily freerolls job: %s", err)
 	}
 
+	_, err = c.AddFunc("0 22 * * SAT", func() {
+		multi.CreateSaturdayTournament()
+	})
+	if err != nil {
+		log.Fatalf("scheduler: failed to add create weekly tournament job: %s", err)
+	}
+
 	_, err = c.AddFunc(conf.Props.TableService.Cron.CreateDailySitngo, func() {
 		sitngo.CreateDaily()
 	})

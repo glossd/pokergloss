@@ -35,7 +35,7 @@ unit_test:
 	go test $$(go list ./... | grep -v /e2e)
 
 e2e_test:
-	PG_STDOUT_LEVEL=debug PG_PROFILE=e2e go test ./e2e/...
+	PG_STDOUT_LEVEL=debug PG_PROFILE=e2e go test -v ./e2e/...
 
 lint:
 	golangci-lint run

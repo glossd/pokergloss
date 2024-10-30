@@ -1,6 +1,9 @@
 package goconf
 
-import "fmt"
+import (
+	"fmt"
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 func GetDbURI(dbName string) string {
 	dbConf := Props.DB
@@ -19,4 +22,12 @@ func GetDbURI(dbName string) string {
 		creds,
 		fullHost,
 		dbName)
+}
+
+func MustObjectIDFromHex(s string) primitive.ObjectID {
+	id, err := primitive.ObjectIDFromHex(s)
+	if err != nil {
+		panic(err)
+	}
+	return id
 }

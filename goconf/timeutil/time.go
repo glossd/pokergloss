@@ -46,11 +46,15 @@ func diff(t time.Time, timeoutAt int64) time.Duration {
 }
 
 func Midnight(t time.Time) int64 {
-	return Time(t.Truncate(24*time.Hour))
+	return Time(MidnightTime(t))
+}
+
+func MidnightTime(t time.Time) time.Time {
+	return t.Truncate(24 * time.Hour)
 }
 
 func Multiply(d time.Duration, multiplier float64) time.Duration {
-	return time.Duration(int64(float64(d)*multiplier))
+	return time.Duration(int64(float64(d) * multiplier))
 }
 
 func AfterTimeAt(at int64) <-chan time.Time {

@@ -30,6 +30,15 @@ func TestCreateDailyFreerolls(t *testing.T) {
 	assert.Positive(t, len(lobbies))
 }
 
+func TestCreateSaturdayTournament(t *testing.T) {
+	t.Cleanup(cleanUp)
+
+	multi.CreateSaturdayTournament()
+	lobbies, err := db.FindAllMultiLobbiesNoCtx()
+	assert.Nil(t, err)
+	assert.Equal(t, 1, len(lobbies))
+}
+
 func TestStartLobbyMulti_NotEnoughPlayers(t *testing.T) {
 	t.Cleanup(cleanUp)
 
