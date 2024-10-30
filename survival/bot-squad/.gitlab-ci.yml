@@ -1,0 +1,25 @@
+stages:
+  - test
+  - package
+
+go-test:
+  stage: test
+  image: registry.gitlab.com/pokerblow/go-services/template:0.1.2
+  script:
+    - PB_STDOUT_LEVEL=error go test -v ./...
+
+docker-build:
+  stage: package
+  image: docker:latest
+  services:
+    - docker:dind
+  variables:
+    DOCKER_DRIVER: overlay2
+    V: $CI_COMMIT_SHORT_SHA
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker pull $CI_REGISTRY_IMAGE:latest || true
+    - docker build --cache-from $CI_REGISTRY_IMAGE:latest -t $CI_REGISTRY_IMAGE:$V -t $CI_REGISTRY_IMAGE:latest .
+    - docker push $CI_REGISTRY_IMAGE:$V
+    - docker push $CI_REGISTRY_IMAGE:latest

@@ -1,0 +1,11 @@
+[{
+  "createIndexes": "usernames",
+  "indexes": [
+    {
+      "key": {
+        "userid": 1
+      },
+      "name": "profiles_userid"
+    }
+  ]
+}]

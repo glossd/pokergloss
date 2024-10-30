@@ -1,0 +1,19 @@
+[
+  {
+    "update": "tables",
+    "updates": [
+      {
+        "q": {
+          "seats.player.status": "leaving"
+        },
+        "u": {
+          "$set": {
+            "seats.$[seat].player.status": "sittingOut"
+          }
+        },
+        "arrayFilters": [{ "seat.player": { "$ne": null}}],
+        "multi": true
+      }
+    ]
+  }
+]

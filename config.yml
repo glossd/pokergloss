@@ -1,0 +1,108 @@
+port: 8080
+stdout:
+  level: info
+
+domain: pokergloss.com
+
+gcp:
+  credentials:
+
+db:
+  scheme: mongodb
+  host: localhost
+  name: table
+  username:
+  password:
+
+table_service:
+  table:
+    seat_reservation_timeout: 20s # this way you can set this with PG_SEAT_RESERVATION_TIMEOUT variable
+    min_decision_timeout: 3s
+    max_decision_timeout: 60s
+    game_end_min_timeout: 1750ms
+    game_end_pot_timeout: 1250ms
+    game_end_community_card_timeout: 1500ms
+    show_down_timeout: 5s
+    player_action_duration: 300ms
+    rake_percent: 0.0
+    max_rake: 2000
+
+  enrich:
+    players_enabled: true
+
+  cleaning:
+    cash_sitting_out_players_timeout: 1m
+    tournament_sitting_out_players_timeout: 10m
+    waiting_tables_timeout: 30m
+    sitngo_start_timeout: 30m
+    alone_player_on_persistent_table: 30m
+
+  scheduler:
+    cron:
+      timeout_recovery: "*/5 * * * *"
+      start_multi_tournaments: "* * * * *"
+      clean_sitting_out_players: "* * * * *"
+      clean_waiting_tables: "*/10 * * * *"
+      clean_alone_player_on_persistent_table: "*/12 * * * *"
+      delete_finished_lobbies: "*/5 * * * *"
+      delete_not_started_sitngo: "*/6 * * * *"
+      create_daily_sitngo: "8,38 * * * *"
+
+  tournament:
+    fee_percent: 0.0
+
+  multi:
+    rebalancer_period: 30s
+    table_size: 6
+    decision_timeout: 15s
+    freerolls:
+      at:
+        - 19:00
+
+
+  daily:
+    last_video_id:
+
+  bank:
+    host: localhost
+    port: 9091
+
+  achievement:
+    host: localhost
+    port: 9090
+
+  market:
+    host: localhost
+    port: 9090
+
+  broadcast:
+    workers: 3
+    jobs: 5
+    init_table_connection_size: 3
+
+bank:
+  ranker_duration: 5m
+ws:
+  logo_url: https://storage.googleapis.com/imagesforpoker/logo/logo.png
+bonus:
+  cron: "0 0 0 * * *"
+mail:
+  host: smtp.sendgrid.net
+  port: 587
+  from: help@pokerblow.com
+  username: apikey
+  password:
+
+profile_service:
+  gcs:
+    avatar_bucket: avatarsforpoker
+
+survival:
+  max_anonymous_counter: 50
+
+gke:
+  pod_id:
+  pod_name:
+  namespace_name:
+  metrics:
+    push_duration: 60s

@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+message GameEnd {
+  TableType table_type = 7;
+
+  int64 StartedAt = 1;
+  // In seconds
+  int64 gameStartAt = 8;
+
+  repeated Winner winners = 2;
+  repeated Player players = 3;
+  repeated string community_cards = 4;
+  bool got_to_show_down = 9;
+  TableRound table_round = 10;
+
+  enum TableType {
+    UNKNOWN_TABLE_TYPE = 0;
+    LIVE = 1; // CASH
+    SITNGO = 2;
+    MULTI = 3;
+  }
+  enum TableRound {
+    UNKNOWN_TABLE_ROUND = 0;
+    PRE_FLOP = 1;
+    FLOP = 2;
+    TURN = 3;
+    RIVER = 4;
+  }
+}
+
+message Player {
+  string user_id = 1;
+  int64 wagered_chips = 2;
+  string lastAction = 3;
+  // filled if got to the showdown
+  string hand = 4;
+  repeated string cards = 5;
+  bool isWinner = 6;
+  // Without rake.
+  int64 won_chips = 7;
+  int64 rake = 8;
+}
+
+message Winner {
+  string user_id = 1;
+  int64 chips = 2;
+  string hand = 3;
+}
+
+
+message SurvivalEnd {
+  string table_id = 1;
+  bool is_user_lost = 2;
+  string user_id = 3;
+}
+
+
+message TournamentEnd {
+  Type type = 1;
+  int64 buy_in = 3;
+  int64 fee = 4;
+  repeated TournamentPlayer players = 5;
+  repeated TournamentWinner tournament_winners = 2;
+  enum Type {
+    UNKNOWN = 0;
+    SITNGO = 1;
+    MULTI = 2;
+  }
+}
+
+message TournamentPlayer {
+  string user_id = 1;
+  int64 place = 2;
+  int64 won_chips = 3;
+}
+
+message TournamentWinner {
+  string user_id = 1;
+  int64 place = 2;
+}

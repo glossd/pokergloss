@@ -1,0 +1,11 @@
+[{
+  "createIndexes": "messages",
+  "indexes": [
+    {
+      "key": {
+        "chatid": 1
+      },
+      "name": "messages_chatid"
+    }
+  ]
+}]

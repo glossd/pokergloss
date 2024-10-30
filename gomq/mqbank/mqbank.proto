@@ -1,0 +1,49 @@
+syntax = "proto3";
+package mqbank;
+
+message BalanceUpdate {
+  string user_id = 1;
+  string operation_id = 2;
+}
+
+message DepositRequest {
+  // Deprecated, use amount.
+  int64 chips = 1;
+  int64 amount = 7;
+  // Deprecated, use reason.
+  Type type = 2;
+  string reason = 5;
+  string description = 3;
+  // to whom make the deposit
+  string userId = 4;
+
+  CurrencyType currencyType = 6;
+
+  enum Type {
+    UNKNOWN = 0;
+    BONUS = 1;
+    CASH_GAME = 2;
+    NEW_LEVEL = 3;
+    NEW_ACHIEVEMENT = 4;
+    ASSIGNMENT = 5;
+    SURVIVAL = 6;
+  }
+}
+
+message MultiDeposit {
+  repeated UserDeposit deposits = 1;
+  string service = 2;
+}
+
+message UserDeposit {
+  int64 amount = 1;
+  string userId = 2;
+  string description = 3;
+
+}
+
+enum CurrencyType {
+  UNKNOWN = 0;
+  CHIPS = 1;
+  COINS = 2;
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "update": "tables",
+    "updates": [
+      {
+        "q": {},
+        "u": {
+          "$set": {
+            "lastaggressorposition": -1
+          }
+        },
+        "multi": true
+      }
+    ]
+  }
+]

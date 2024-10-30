@@ -1,0 +1,16 @@
+syntax = "proto3";
+package grpcachieve;
+
+service AchievementService {
+  rpc GetExp(GetExpRequest) returns (GetExpResponse) {}
+}
+
+message GetExpRequest {
+  string user_id = 1;
+}
+
+message GetExpResponse {
+  string user_id = 1;
+  int64 points = 2;
+  int64 level = 3;
+}

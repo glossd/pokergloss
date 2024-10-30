@@ -1,0 +1,66 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package grpctable;
+
+service TableService {
+  rpc GetTable(GetTableRequest) returns (GetTableResponse) {}
+
+  rpc CreateSurvivalTable(CreateSurvivalTableRequest) returns (CreateSurvivalTableResponse) {}
+
+  rpc DeleteSurvivalTable(DeleteSurvivalTableRequest) returns (google.protobuf.Empty) {}
+
+  rpc MakeAction(MakeActionRequest) returns (google.protobuf.Empty) {}
+
+  rpc SitBack(SitBackRequest) returns (google.protobuf.Empty) {}
+}
+
+message GetTableRequest {
+  string table_id = 1;
+}
+message GetTableResponse {
+  bytes table_json = 1;
+}
+
+message CreateSurvivalTableRequest {
+  string name = 1;
+  int64 big_blind = 2;
+  int64 decision_time_sec = 3;
+  int64 level_increase_time_sec = 7;
+  string theme_id = 4;
+  User user = 5;
+  repeated Bot bots = 6;
+  int64 survival_level = 8;
+}
+
+message User {
+  string user_id = 1;
+  string username = 2;
+  string picture = 3;
+  int64 stack = 4;
+}
+
+message Bot {
+  string name = 1;
+  string picture = 2;
+  int64 stack = 3;
+}
+
+message CreateSurvivalTableResponse {
+  bytes table_json = 1;
+}
+
+message DeleteSurvivalTableRequest {
+  string table_id = 1;
+}
+
+message MakeActionRequest {
+  string table_id = 1;
+  int64 position = 2;
+  string action_type = 3;
+  int64 chips = 4;
+}
+
+message SitBackRequest {
+  int64 position = 1;
+  string table_id = 2;
+}

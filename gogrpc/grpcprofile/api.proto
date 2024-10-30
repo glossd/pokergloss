@@ -1,0 +1,22 @@
+syntax = "proto3";
+package grpcprofile;
+
+service ProfileService {
+  rpc GetUsers(GetUsersRequest) returns (GetUsersResponse) {}
+}
+
+message GetUsersRequest {
+  repeated string user_ids = 1;
+}
+
+message GetUsersResponse {
+  // user_id -> identity
+  map<string, Identity> users = 1;
+}
+
+message Identity {
+  string user_id = 1;
+  string username = 2;
+  string picture = 3;
+}
+

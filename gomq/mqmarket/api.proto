@@ -1,0 +1,16 @@
+syntax = "proto3";
+package mqmarket;
+
+message Gift {
+  string to_user_id = 1;
+  string item_id = 2;
+  int64 units = 3;
+  TimeFrame time_frame = 4;
+
+  enum TimeFrame {
+    UNKNOWN = 0;
+    DAY = 1;
+    WEEK = 2;
+    MONTH = 3;
+  }
+}

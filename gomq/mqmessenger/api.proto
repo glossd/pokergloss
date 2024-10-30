@@ -1,0 +1,15 @@
+syntax = "proto3";
+package mqmessenger;
+
+message Message {
+  string to_user_id = 1;
+  string from_user_id = 3;
+  string text = 2;
+  Topology topology = 4;
+
+  enum Topology {
+    UNKNOWN = 0;
+    P2P = 1;
+    BROADCAST = 2;
+  }
+}

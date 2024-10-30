@@ -1,0 +1,66 @@
+syntax = "proto3";
+package grpcbank;
+
+service BankService {
+  rpc GetBalance(GetBalanceRequest) returns (GetBalanceResponse) {}
+
+  rpc GetBalanceWithRank(GetBalanceWithRankRequest) returns (GetBalanceWithRankResponse) {}
+
+  rpc Withdraw(WithdrawRequest) returns (WithdrawResponse) {}
+
+  rpc WithdrawCoins(WithdrawCoinsRequest) returns (WithdrawCoinsResponse) {}
+}
+
+
+message GetBalanceRequest {
+  string user_id = 1;
+}
+
+message GetBalanceResponse {
+  string user_id = 1;
+  int64 chips = 2;
+}
+
+message GetBalanceWithRankRequest {
+  string user_id = 1;
+}
+
+message GetBalanceWithRankResponse {
+  string user_id = 1;
+  int64 chips = 2;
+  int64 rank = 3;
+}
+
+message WithdrawRequest {
+  int64 chips = 1;
+  string reason = 4;
+  string description = 2;
+  // from whom
+  string userId = 3;
+}
+
+message WithdrawResponse {
+  Status status = 1;
+
+  enum Status {
+    UNKNOWN = 0;
+    OK = 1;
+    NOT_ENOUGH_CHIPS = 2;
+    }
+}
+
+message WithdrawCoinsRequest {
+  string user_id = 1;
+  int64 coins = 2;
+  string reason = 3;
+  string description = 4;
+}
+
+message WithdrawCoinsResponse {
+  Status status = 1;
+  enum Status {
+    UNKNOWN = 0;
+    OK = 1;
+    NOT_ENOUGH_COINS = 2;
+  }
+}

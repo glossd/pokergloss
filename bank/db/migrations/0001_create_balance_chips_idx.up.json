@@ -1,0 +1,11 @@
+[{
+  "createIndexes": "balances",
+  "indexes": [
+    {
+      "key": {
+        "chips": 1
+      },
+      "name": "balances_chips"
+    }
+  ]
+}]

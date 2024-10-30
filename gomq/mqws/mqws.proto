@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+// Only for user EntityType, table uses TableMessage
+message Message {
+  enum EntityType {
+    UNKNOWN = 0;
+    TABLE = 1;
+    USER = 2;
+  }
+  // Deprecated, use TableMessage for table
+  EntityType entity_type = 1;
+
+  // Deprecated, use to_user_ids
+  string entity_id = 2;
+  repeated string to_user_ids = 5;
+
+  // Deprecated, use TableMessage for table
+  TableUserEvents user_events = 3;
+
+  repeated Event events = 4;
+}
+
+message Event {
+  string type = 1;
+  string payload = 2;
+}
+
+message TableMessage {
+  // Can be tableIds or lobbyIds
+  repeated string to_entity_ids = 1;
+  TableUserEvents user_events = 2;
+  repeated Event events = 3;
+}
+
+message TableUserEvents {
+    map<string, Events> user_events = 1; // secret info for users
+    repeated Event not_found_users_events = 2; // for non playing users
+
+    repeated Event before_events = 3;
+    repeated Event after_events = 4;
+
+    repeated Event secret_events = 5; // all users secret info
+}
+
+message Events {
+  repeated Event events = 1;
+}
+
+message Entity {
+  string id = 1;
+}

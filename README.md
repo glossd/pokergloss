@@ -1,0 +1,23 @@
+# PokerGloss
+Back-end Monolith of [PokerGloss.com](https://PokerGloss.com)  
+TL;DR Microservices are great if you have money.
+## A bit of history
+Each folder in this repository used be either a library or a microservice having it's own
+Grpc API, Rest API, CI/CD and Kubernetes config. Everything was deployed to GKE.   
+I **shut down** the project in **2021** because I was low on funds and burned out.
+## Revival
+I always wanted to keep it online but the cost of GKE would prevent that.  
+In **2024** I felt positive enough to fix it. My goal was to run it as cheap as possible (under 10$ a month). 
+That means **no** Kubernetes, Docker, gRPC, Message Queues and the whole Microservice Architecture.
+I decided to merge all microservices into a monolith and deploy it as a single Go binary to a VPS instance.
+### From Microservices to Monolith changes
+1. Thanks to `api/{service_name}/**` pattern it was easy to combine all the routes in one HTTP server.  
+2. gRPC was replaced with simple function calls. I'm glad I decided to create gRPC only for internal calls, instead of having the easy gRPC-HTTP transcoding way. 
+3. Pub/Sub was replaced with simple Go channels, ([I used this to mock it](https://github.com/glossd/memmq/blob/master/memmq.go)). I'm glad GCP didn't offer Kafka as a Service because it would be harder to get rid of.   
+4. Each service would still have its own database, because it creates no additional costs.
+5. The microservices used to run on Golang 1.15. Some of the old packages were no longer available e.g. `google.golang.org/grpc`
+So I had to reinstall packages, updating Go to 1.23.
+
+### License
+I have used the MongoDB license because I don't want anyone using this commercially without my permission. 
+If you'd like to use something from this project commercially please email me at dennisgloss23@gmail.com  

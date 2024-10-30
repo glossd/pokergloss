@@ -1,0 +1,19 @@
+syntax = "proto3";
+package grpctableevents;
+
+service TableEventsService {
+  rpc StreamTableEvents(StreamTableEventsRequest) returns (stream Events) {}
+}
+
+message Events {
+  repeated Event events = 1;
+}
+
+message Event {
+  string type = 1;
+  string payload = 2;
+}
+
+message StreamTableEventsRequest {
+  string table_id = 1;
+}

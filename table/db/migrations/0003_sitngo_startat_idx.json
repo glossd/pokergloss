@@ -1,0 +1,11 @@
+[{
+  "createIndexes": "sitAndGoLobbies",
+  "indexes": [
+    {
+      "key": {
+        "startat": 1
+      },
+      "name": "sitAndGoLobbies_startat"
+    }
+  ]
+}]

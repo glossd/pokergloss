@@ -1,0 +1,23 @@
+{
+  "_id" : ObjectId("5fea7180df0ccde21ef5e2c0"),
+  "createdat" : NumberLong("1609632000001"),
+  "name" : "Saturday Tournament",
+  "startat" : NumberLong("1627138800000"),
+  "prizeperuser" : NumberLong(1000),
+  "tablesize" : 6,
+  "startingchips" : NumberLong(500),
+  "levelincreasetime" : NumberLong("300000000000"),
+  "decisiontimeout" : NumberLong("15000000000"),
+  "bettinglimit": "NL",
+  "users" : null,
+  "status" : "registering",
+  "tableids" : null,
+  "prizes" : null,
+  "realprizedescription" : null,
+  "lastvideoid" : null,
+  "marketprize" : {
+    "itemid" : "crown",
+    "numberofdays" : 7
+  },
+  "version" : NumberLong(0)
+}

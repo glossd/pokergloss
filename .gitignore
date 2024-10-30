@@ -1,0 +1,9 @@
+.idea
+.vscode
+
+tmp*
+main
+*.sh
+*.conf
+
+auth/e2e/idp_viewer.json
