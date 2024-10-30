@@ -11,6 +11,8 @@ import (
 	"time"
 )
 
+var SaturdayTournamentID = conf.MustObjectIDFromHex("5fea7180df0ccde21ef5e2c0")
+
 const NumberOfTournaments = 3 + 1
 
 var NothingEnrich = func(multi *domain.LobbyMulti) {}
@@ -82,6 +84,27 @@ func createTournaments(t time.Time) {
 	}
 }
 
+func CreateSaturdayTournament() {
+	now := time.Now()
+	daysUntilSaturday := time.Saturday - now.Weekday()
+	if daysUntilSaturday == 0 {
+		daysUntilSaturday = 7 // if today is Saturday, we want the next Saturday, which is 7 days away
+	}
+	nextSaturday := now.AddDate(0, 0, int(daysUntilSaturday))
+	startAt := timeutil.MidnightTime(nextSaturday).Add(19 * time.Hour)
+
+	lobby := domain.NewMultiLobbyDaily("Saturday", domain.ML, startAt, 1000, 10)
+	lobby.ID = SaturdayTournamentID
+	lobby.MarketPrize = &domain.MarketPrize{
+		ItemID:       "crown",
+		NumberOfDays: 7,
+	}
+	err := db.InsertOneLobbyMulti(lobby)
+	if err != nil {
+		log.Errorf("Failed to create saturday tournament: %s", err)
+	}
+}
+
 func createFreerolls(t time.Time, enricher func(multi *domain.LobbyMulti), except []time.Time) {
 	var lobbies []interface{}
 	freerollTimes, err := timeutil.TimeSeriesOfDay(t, conf.Props.Multi.Freerolls.At...)
@@ -99,6 +122,11 @@ func createFreerolls(t time.Time, enricher func(multi *domain.LobbyMulti), excep
 		freeroll := domain.NewFreerollWithNumber(startAt, i+1)
 		enricher(freeroll)
 		if startAt.Hour() == 19 && startAt.Minute() == 0 {
+			if startAt.Weekday() == time.Saturday {
+				// weekly tournament
+				continue
+			}
+			// daily freeroll
 			oid, err := primitive.ObjectIDFromHex("60280c0072d38a27d9264d88")
 			if err != nil {
 				log.Fatal(err)
