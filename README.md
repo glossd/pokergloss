@@ -1,6 +1,11 @@
 # PokerGloss
 Back-end Monolith of [PokerGloss.com](https://PokerGloss.com)  
-TL;DR Microservices are great if you have money.
+TL;DR Microservices are great if you have money.  
+
+<img src=".github/lenin.jpg" width="400">
+
+I love Docker, Kafka and all that cloud stuff, just don't have enough money:)
+
 ## A bit of history
 Each folder in this repository used be either a library or a microservice having it's own
 Grpc API, Rest API, CI/CD and Kubernetes config. Everything was deployed to GKE.   
