@@ -19,10 +19,14 @@ I decided to merge all microservices into a monolith and deploy it as a single G
 1. Thanks to `api/{service_name}/**` pattern it was easy to combine all the routes in one HTTP server.  
 2. gRPC was replaced with simple function calls. I'm glad I decided to create gRPC only for internal calls, instead of having the easy gRPC-HTTP transcoding way. 
 3. Pub/Sub was replaced with simple Go channels, ([I used this to mock it](https://github.com/glossd/memmq/blob/master/memmq.go)). 
-     I'm glad GCP didn't offer Kafka as a Service because it would be harder to get rid of. However, table timeouts needed to be persistent and I kept Pub/Sub just for them.   
+I'm glad GCP didn't offer Kafka as a Service because it would be harder to get rid of. However, table timeouts needed to be persistent and I kept Pub/Sub just for them.   
 4. Each service would still have its own database, because it creates no additional costs.
-5. The microservices used to run on Golang 1.15. Some of the old packages were no longer available e.g. `google.golang.org/grpc`
+5. I deleted all the k8s yaml files, because now the result product of the whole back-end is just a binary running on a small VPS.
+6. The microservices used to run on Golang 1.15. Some of the old packages were no longer available e.g. `google.golang.org/grpc`
 So I had to reinstall packages, updating Go to 1.23.
+7. I had a nice CI/CD pipeline test->build->deploy->build_client-publish-client for each service.
+But remembering how much pain it was to configure [dockertest](https://github.com/ory/dockertest) for GitLab (the last lines of readme are mine),
+I decided to stick with local bash scripts and run tests on my M3 macbook, which is a lot faster than any ci runner. Maybe later I'll add the GitHub CI/CD.
 
 ### License
 I have used the MongoDB license because I don't want anyone using this commercially without my permission. 
