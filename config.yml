@@ -90,11 +90,11 @@ ws:
 bonus:
   cron: "0 0 0 * * *"
 mail:
-  host: smtp.sendgrid.net
+  host: in-v3.mailjet.com
   port: 587
-  from: help@pokerblow.com
-  username: apikey
-  password:
+  from: noreply@pokergloss.com
+  username: apiKey
+  password: apiSecret
 
 profile_service:
   gcs:
