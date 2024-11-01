@@ -1,5 +1,6 @@
-# PokerGloss
-Back-end Monolith of [PokerGloss.com](https://PokerGloss.com)  
+# PokerGloss  
+Back-end Monolith of [PokerGloss.com](https://PokerGloss.com). [Front-end repo](https://github.com/glossd/pokergloss-ui)
+
 TL;DR Microservices are great if you have money.  
 
 <img src=".github/lenin.jpg" width="400">
