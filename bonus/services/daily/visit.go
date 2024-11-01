@@ -36,7 +36,7 @@ func TakeDaily(ctx context.Context, iden authid.Identity) (*domain.DailyBonus, e
 		}
 
 		if !conf.IsLocal() {
-			err = mqsurvival.Publish(&mqsurvival.TicketGift{Tickets: 5, ToUserId: iden.UserId})
+			err = mqsurvival.Publish(&mqsurvival.TicketGift{Tickets: 3, ToUserId: iden.UserId})
 			if err != nil {
 				log.Errorf("Failed to publish ticket gift: %s", err)
 			}
