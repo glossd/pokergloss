@@ -2,17 +2,18 @@ package domain
 
 import "go.mongodb.org/mongo-driver/bson/primitive"
 
-const SupportUserID = "8xJcx5LfCrTXUsaRdHC8ufzmjdT2"
+const SupportUserID = "sGHdhW0XVVSIOREZV1svRvSKdf93"
 
 var ErrChatNotAvailable = E("chat is not available")
 
 type Chat struct {
-	ID primitive.ObjectID `bson:"_id"`
-	Type ChatType
+	ID           primitive.ObjectID `bson:"_id"`
+	Type         ChatType
 	Participants []string // userIDs
 }
 
 type ChatType string
+
 const (
 	U2U ChatType = "u2u"
 )
@@ -33,7 +34,7 @@ func (c *Chat) ParticipantsExcept(userID string) []string {
 	if c == nil {
 		return nil
 	}
-	var other [] string
+	var other []string
 	for _, participant := range c.Participants {
 		if participant != userID {
 			other = append(other, participant)

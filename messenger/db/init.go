@@ -2,7 +2,7 @@ package db
 
 import (
 	"context"
-	"fmt"
+	conf "github.com/glossd/pokergloss/goconf"
 	log "github.com/sirupsen/logrus"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -32,25 +32,6 @@ func InitWithURI(uri string) (context.Context, *mongo.Client, error) {
 	runMigrations(uri)
 
 	return ctx, Client, nil
-}
-
-func conf.GetDbURI(DbName) string {
-	dbConf := conf.Props.DB
-	fullHost := dbConf.Host
-	if dbConf.Port != nil {
-		fullHost = fmt.Sprintf("%s:%d", fullHost, *dbConf.Port)
-	}
-
-	var creds string
-	if dbConf.Username != "" {
-		creds = fmt.Sprintf("%s:%s", dbConf.Username, dbConf.Password)
-	}
-
-	return fmt.Sprintf("%s://%s@%s/%s?retryWrites=true&w=majority",
-		dbConf.Scheme,
-		creds,
-		fullHost,
-		DbName)
 }
 
 func filterID(id interface{}) bson.M {

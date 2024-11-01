@@ -13,6 +13,7 @@ import (
 	conf "github.com/glossd/pokergloss/goconf"
 	"github.com/glossd/pokergloss/mail"
 	"github.com/glossd/pokergloss/market"
+	"github.com/glossd/pokergloss/messenger"
 	"github.com/glossd/pokergloss/profile"
 	"github.com/glossd/pokergloss/survival"
 	"github.com/glossd/pokergloss/table"
@@ -42,6 +43,7 @@ func main() {
 		table.Run(r),
 		mail.Run(r),
 		market.Run(r),
+		messenger.Run(r),
 		profile.Run(r),
 		survival.Run(r),
 		tablechat.Run(r),

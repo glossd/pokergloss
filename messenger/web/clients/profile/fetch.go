@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/glossd/pokergloss/gogrpc/grpcprofile"
 	"github.com/glossd/pokergloss/messenger/domain"
+	"github.com/glossd/pokergloss/profile/web/grpc"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -14,16 +15,14 @@ func FetchUserMap(ctx context.Context, ulc *domain.UserChatList) map[string]*grp
 	for _, chat := range ulc.U2UChats {
 		userIDs = append(userIDs, chat.OtherUserID)
 	}
-	if err := grpcprofile.CheckReadiness(); err != nil {
-		log.Errorf("Grpc profile client is not ready")
+
+	res, err := grpc.GetUsers(ctx, &grpcprofile.GetUsersRequest{UserIds: userIDs})
+	if err != nil {
+		log.Errorf("Failed to get users from profile: %s", err)
 	} else {
-		res, err := grpcprofile.Client.GetUsers(ctx, &grpcprofile.GetUsersRequest{UserIds: userIDs})
-		if err != nil {
-			log.Errorf("Failed to get users from profile: %s", err)
-		} else {
-			userMap = res.GetUsers()
-		}
+		userMap = res.GetUsers()
 	}
+
 	if userMap == nil {
 		userMap = make(map[string]*grpcprofile.Identity)
 	}
@@ -31,12 +30,7 @@ func FetchUserMap(ctx context.Context, ulc *domain.UserChatList) map[string]*grp
 }
 
 func FetchUser(ctx context.Context, userID string) (*grpcprofile.Identity, error) {
-	if err := grpcprofile.CheckReadiness(); err != nil {
-		log.Errorf("Grpc profile client is not ready")
-		return nil, err
-	}
-
-	res, err := grpcprofile.Client.GetUsers(ctx, &grpcprofile.GetUsersRequest{UserIds: []string{userID}})
+	res, err := grpc.GetUsers(ctx, &grpcprofile.GetUsersRequest{UserIds: []string{userID}})
 	if err != nil {
 		log.Errorf("Failed to get users from profile: %s", err)
 		return nil, err
