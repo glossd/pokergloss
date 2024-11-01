@@ -38,7 +38,7 @@ func GetUserChats(ctx context.Context, iden authid.Identity) ([]*model.Chat, err
 		chats = append(chats, &model.Chat{
 			ID:      chatID,
 			Name:    "support",
-			Picture: "https://storage.googleapis.com/avatarsforpoker/8xJcx5LfCrTXUsaRdHC8ufzmjdT2-uP30",
+			Picture: "https://storage.googleapis.com/avatarsforpoker/sGHdhW0XVVSIOREZV1svRvSKdf93-Rq6n",
 			LastMessage: &model.Message{
 				ChatID:    &chatID,
 				UserID:    &userID,

@@ -9,6 +9,9 @@ import (
 )
 
 func GetUsers(ctx context.Context, r *grpcprofile.GetUsersRequest) (*grpcprofile.GetUsersResponse, error) {
+	if len(r.UserIds) == 0 {
+		return &grpcprofile.GetUsersResponse{}, nil
+	}
 	profiles, err := db.FindAllProfilesByUserIDs(ctx, r.UserIds)
 	if err != nil {
 		return nil, status.Error(codes.Internal, err.Error())

@@ -18,12 +18,11 @@ func GetClient(userID string) (*Client, error) {
 	return client, nil
 }
 
-
 func addUser(client *Client) {
-	userStore.Store(client.UserId, client)
+	userStore.Store(client.Identity.UserId, client)
 }
 
 func RemoveUser(client *Client) {
-	userStore.Delete(client.UserId)
+	userStore.Delete(client.Identity.UserId)
 	client.Close()
 }
