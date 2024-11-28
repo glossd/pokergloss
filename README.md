@@ -29,8 +29,9 @@ I'm glad GCP didn't offer Kafka as a Service because it would be harder to get r
 6. The microservices used to run on Golang 1.15. Some of the old packages were no longer available e.g. `google.golang.org/grpc`
 So I had to reinstall packages, updating Go to 1.23.
 7. I had a nice CI/CD pipeline test->build->deploy->build_client-publish-client for each service.
-But remembering how much pain it was to configure [dockertest](https://github.com/ory/dockertest) for GitLab (the last lines of readme are mine),
+But remembering how much pain it was to configure [dockertest](https://github.com/ory/dockertest) for GitLab (the last lines of dockertest readme are mine),
 I decided to stick with local bash scripts and run tests on my M3 macbook, which is a lot faster than any ci runner. Maybe later I'll add the GitHub CI/CD.
+8. To replace Kubernetes' features I created [Yetis](https://github.com/glossd/yetis)
 
 ### License
 I have used the MongoDB license because I don't want anyone using this commercially without my permission. 
