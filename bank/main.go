@@ -25,6 +25,7 @@ func Run(c *gin.Engine) func(context.Context) {
 	}
 
 	go mqsub.SubscribeToDeposits()
+	go mqsub.SubscribeToMultiDeposits()
 	go mqsub.SubscribeToProfiles()
 	go mqsub.SubscribeForBalanceUpdates()
 

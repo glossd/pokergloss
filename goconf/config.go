@@ -5,7 +5,6 @@ import (
 	"github.com/spf13/viper"
 	"os"
 	"path/filepath"
-	"runtime"
 	"strings"
 	"time"
 )
@@ -100,6 +99,7 @@ func Init() {
 func ParseConfig(projectRoot string, props interface{}) {
 	viper.SetConfigName("config")
 	viper.AddConfigPath(projectRoot)
+	viper.AddConfigPath(".")
 	if err := viper.ReadInConfig(); err != nil {
 		log.Fatalf("Error reading config file, %s", err)
 	}
@@ -131,6 +131,10 @@ func InitLogs(levelStr string) {
 }
 
 func getRootProjectDir() string {
-	_, b, _, _ := runtime.Caller(0)
-	return filepath.Dir(filepath.Dir(b))
+	exePath, err := os.Executable()
+	if err != nil {
+		wd, _ := os.Getwd()
+		return wd
+	}
+	return filepath.Dir(exePath)
 }

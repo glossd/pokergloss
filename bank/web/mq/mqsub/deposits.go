@@ -28,3 +28,26 @@ func SubscribeToDeposits() {
 		log.Fatalf("Couldn't subscribe with pubsub client: %s", err)
 	}
 }
+
+// this topic was added to cryptobank after this service was archived.
+func SubscribeToMultiDeposits() {
+	err := mqbank.PullMultiDeposits("cryptobank-multi-deposits", func(ctx context.Context, r *mqbank.MultiDeposit) error {
+		for _, deposit := range r.Deposits {
+			// in cryptobank used mongo transactions, all or none
+			log.Tracef("Received deposit: %v", r)
+			op, err := domain.NewDeposit(domain.Reason(r.Service), deposit.Amount, deposit.UserId, deposit.Description)
+			if err != nil {
+				log.Errorf("Failed to init deposit operation %+v: %s", deposit, err)
+				continue
+			}
+			err = services.Deposit(ctx, op)
+			if err != nil {
+				log.Errorf("Failed to save deposit operation %+v: %s", op, err)
+			}
+		}
+		return nil
+	})
+	if err != nil {
+		log.Fatalf("Couldn't subscribe with pubsub client: %s", err)
+	}
+}

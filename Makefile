@@ -3,7 +3,8 @@ run:
 	PG_PROFILE=local PG_JWT_VERIFICATION_DISABLE=true PG_STDOUT_LEVEL=trace go run main.go
 
 
-
+compile_linux:
+	GOOS=linux GOARCH=amd64 go build -o main
 
 CONTAINER_MONGO_NAME := test-mongo
 db_run:
